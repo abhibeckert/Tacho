@@ -1,0 +1,826 @@
+{
+
+  "splits": { "count":5, "current":1, "caption":"vs Optimal", "displaymode":"vs Optimal", "split": [ 
+
+  {"id":1,"name":"Split 1","disptime": -99999.000,"dispdelta": -99999.000,"optimal": 23.590,"best": 23.578,"last":-99999.000},
+
+  {"id":2,"name":"Split 2","disptime": -99999.000,"dispdelta": -99999.000,"optimal": 20.165,"best": 20.177,"last":-99999.000},
+
+  {"id":3,"name":"Split 3","disptime": -99999.000,"dispdelta": -99999.000,"optimal": 15.666,"best": 15.654,"last":-99999.000},
+
+  {"id":4,"name":"Split 4","disptime": -99999.000,"dispdelta": -99999.000,"optimal": 14.462,"best": 14.449,"last":-99999.000},
+
+  {"id":5,"name":"Split 5","disptime": -99999.000,"dispdelta": -99999.000,"optimal": 14.165,"best": 14.188,"last":-99999.000}
+
+ ]}, 
+
+  "lapsremaining":0, 
+
+  "speed":{"val":0.003,"delta":-157.1},
+
+  "laptime": {"curdelta":-5.645,"bestlap":88.046, "lastlap":0},
+
+  "rpm":1200,
+
+  "gear":1
+
+,"fuel":{
+
+  "fuelremaining":"26.48 L",
+
+  "avgfuelperlap":"0.000 L",
+
+  "curfuelperlap":"-",
+
+  "lapsoffuelremaining":"-",
+
+  "lapssincepit":"0.00"
+
+}
+
+,"sessiondata":{
+
+  "CameraInfo.Groups":"",
+
+  "CameraInfo.Groups[0].Cameras":"",
+
+  "CameraInfo.Groups[0].Cameras[0].CameraName":"CamNose",
+
+  "CameraInfo.Groups[0].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[0].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[0].GroupName":"Nose",
+
+  "CameraInfo.Groups[0].GroupNum":"1",
+
+  "CameraInfo.Groups[1].Cameras":"",
+
+  "CameraInfo.Groups[1].Cameras[0].CameraName":"CamGearbox",
+
+  "CameraInfo.Groups[1].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[1].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[1].GroupName":"Gearbox",
+
+  "CameraInfo.Groups[1].GroupNum":"2",
+
+  "CameraInfo.Groups[10].Cameras":"",
+
+  "CameraInfo.Groups[10].Cameras[0].CameraName":"CamChopper",
+
+  "CameraInfo.Groups[10].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[10].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[10].GroupName":"Chopper",
+
+  "CameraInfo.Groups[10].GroupNum":"11",
+
+  "CameraInfo.Groups[11].Cameras":"",
+
+  "CameraInfo.Groups[11].Cameras[0].CameraName":"CamChase",
+
+  "CameraInfo.Groups[11].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[11].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[11].GroupName":"Chase",
+
+  "CameraInfo.Groups[11].GroupNum":"12",
+
+  "CameraInfo.Groups[12].Cameras":"",
+
+  "CameraInfo.Groups[12].Cameras[0].CameraName":"CamFar Chase",
+
+  "CameraInfo.Groups[12].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[12].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[12].GroupName":"Far Chase",
+
+  "CameraInfo.Groups[12].GroupNum":"13",
+
+  "CameraInfo.Groups[13].Cameras":"",
+
+  "CameraInfo.Groups[13].Cameras[0].CameraName":"CamRear Chase",
+
+  "CameraInfo.Groups[13].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[13].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[13].GroupName":"Rear Chase",
+
+  "CameraInfo.Groups[13].GroupNum":"14",
+
+  "CameraInfo.Groups[14].Cameras":"",
+
+  "CameraInfo.Groups[14].Cameras[0].CameraName":"Scenic_00",
+
+  "CameraInfo.Groups[14].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[14].Cameras[1].CameraName":"Scenic_01",
+
+  "CameraInfo.Groups[14].Cameras[1].CameraNum":"2",
+
+  "CameraInfo.Groups[14].Cameras[10].CameraName":"Scenic_10",
+
+  "CameraInfo.Groups[14].Cameras[10].CameraNum":"11",
+
+  "CameraInfo.Groups[14].Cameras[2].CameraName":"Scenic_02",
+
+  "CameraInfo.Groups[14].Cameras[2].CameraNum":"3",
+
+  "CameraInfo.Groups[14].Cameras[3].CameraName":"Scenic_03",
+
+  "CameraInfo.Groups[14].Cameras[3].CameraNum":"4",
+
+  "CameraInfo.Groups[14].Cameras[4].CameraName":"Scenic_04",
+
+  "CameraInfo.Groups[14].Cameras[4].CameraNum":"5",
+
+  "CameraInfo.Groups[14].Cameras[5].CameraName":"Scenic_05",
+
+  "CameraInfo.Groups[14].Cameras[5].CameraNum":"6",
+
+  "CameraInfo.Groups[14].Cameras[6].CameraName":"Scenic_06",
+
+  "CameraInfo.Groups[14].Cameras[6].CameraNum":"7",
+
+  "CameraInfo.Groups[14].Cameras[7].CameraName":"Scenic_07",
+
+  "CameraInfo.Groups[14].Cameras[7].CameraNum":"8",
+
+  "CameraInfo.Groups[14].Cameras[8].CameraName":"Scenic_08",
+
+  "CameraInfo.Groups[14].Cameras[8].CameraNum":"9",
+
+  "CameraInfo.Groups[14].Cameras[9].CameraName":"Scenic_09",
+
+  "CameraInfo.Groups[14].Cameras[9].CameraNum":"10",
+
+  "CameraInfo.Groups[14].Cameras[count]":" 11",
+
+  "CameraInfo.Groups[14].GroupName":"Scenic",
+
+  "CameraInfo.Groups[14].GroupNum":"15",
+
+  "CameraInfo.Groups[14].IsScenic":"true",
+
+  "CameraInfo.Groups[15].Cameras":"",
+
+  "CameraInfo.Groups[15].Cameras[0].CameraName":"CamPit Lane",
+
+  "CameraInfo.Groups[15].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[15].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[15].GroupName":"Pit Lane",
+
+  "CameraInfo.Groups[15].GroupNum":"16",
+
+  "CameraInfo.Groups[16].Cameras":"",
+
+  "CameraInfo.Groups[16].Cameras[0].CameraName":"CamPit Lane 2",
+
+  "CameraInfo.Groups[16].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[16].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[16].GroupName":"Pit Lane 2",
+
+  "CameraInfo.Groups[16].GroupNum":"17",
+
+  "CameraInfo.Groups[17].Cameras":"",
+
+  "CameraInfo.Groups[17].Cameras[0].CameraName":"CamTV1_00",
+
+  "CameraInfo.Groups[17].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[17].Cameras[1].CameraName":"CamTV1_01",
+
+  "CameraInfo.Groups[17].Cameras[1].CameraNum":"2",
+
+  "CameraInfo.Groups[17].Cameras[2].CameraName":"CamTV1_02",
+
+  "CameraInfo.Groups[17].Cameras[2].CameraNum":"3",
+
+  "CameraInfo.Groups[17].Cameras[3].CameraName":"CamTV1_05",
+
+  "CameraInfo.Groups[17].Cameras[3].CameraNum":"4",
+
+  "CameraInfo.Groups[17].Cameras[4].CameraName":"CamTV1_03",
+
+  "CameraInfo.Groups[17].Cameras[4].CameraNum":"5",
+
+  "CameraInfo.Groups[17].Cameras[5].CameraName":"CamTV1_06",
+
+  "CameraInfo.Groups[17].Cameras[5].CameraNum":"6",
+
+  "CameraInfo.Groups[17].Cameras[count]":" 6",
+
+  "CameraInfo.Groups[17].GroupName":"TV1",
+
+  "CameraInfo.Groups[17].GroupNum":"18",
+
+  "CameraInfo.Groups[18].Cameras":"",
+
+  "CameraInfo.Groups[18].Cameras[0].CameraName":"CamTV2_00",
+
+  "CameraInfo.Groups[18].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[18].Cameras[1].CameraName":"CamTV2_01",
+
+  "CameraInfo.Groups[18].Cameras[1].CameraNum":"2",
+
+  "CameraInfo.Groups[18].Cameras[2].CameraName":"CamTV2_02",
+
+  "CameraInfo.Groups[18].Cameras[2].CameraNum":"3",
+
+  "CameraInfo.Groups[18].Cameras[3].CameraName":"CamTV2_03",
+
+  "CameraInfo.Groups[18].Cameras[3].CameraNum":"4",
+
+  "CameraInfo.Groups[18].Cameras[4].CameraName":"CamTV2_04",
+
+  "CameraInfo.Groups[18].Cameras[4].CameraNum":"5",
+
+  "CameraInfo.Groups[18].Cameras[5].CameraName":"CamTV2_05",
+
+  "CameraInfo.Groups[18].Cameras[5].CameraNum":"6",
+
+  "CameraInfo.Groups[18].Cameras[6].CameraName":"CamTV2_06",
+
+  "CameraInfo.Groups[18].Cameras[6].CameraNum":"7",
+
+  "CameraInfo.Groups[18].Cameras[7].CameraName":"CamTV2_09",
+
+  "CameraInfo.Groups[18].Cameras[7].CameraNum":"8",
+
+  "CameraInfo.Groups[18].Cameras[8].CameraName":"CamTV2_07",
+
+  "CameraInfo.Groups[18].Cameras[8].CameraNum":"9",
+
+  "CameraInfo.Groups[18].Cameras[count]":" 9",
+
+  "CameraInfo.Groups[18].GroupName":"TV2",
+
+  "CameraInfo.Groups[18].GroupNum":"19",
+
+  "CameraInfo.Groups[19].Cameras":"",
+
+  "CameraInfo.Groups[19].Cameras[0].CameraName":"CamTV3_00",
+
+  "CameraInfo.Groups[19].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[19].Cameras[1].CameraName":"CamTV3_01",
+
+  "CameraInfo.Groups[19].Cameras[1].CameraNum":"2",
+
+  "CameraInfo.Groups[19].Cameras[2].CameraName":"CamTV3_07",
+
+  "CameraInfo.Groups[19].Cameras[2].CameraNum":"3",
+
+  "CameraInfo.Groups[19].Cameras[3].CameraName":"CamTV3_02",
+
+  "CameraInfo.Groups[19].Cameras[3].CameraNum":"4",
+
+  "CameraInfo.Groups[19].Cameras[4].CameraName":"CamTV3_03",
+
+  "CameraInfo.Groups[19].Cameras[4].CameraNum":"5",
+
+  "CameraInfo.Groups[19].Cameras[5].CameraName":"CamTV3_04",
+
+  "CameraInfo.Groups[19].Cameras[5].CameraNum":"6",
+
+  "CameraInfo.Groups[19].Cameras[6].CameraName":"CamTV3_06",
+
+  "CameraInfo.Groups[19].Cameras[6].CameraNum":"7",
+
+  "CameraInfo.Groups[19].Cameras[7].CameraName":"CamTV2_08",
+
+  "CameraInfo.Groups[19].Cameras[7].CameraNum":"8",
+
+  "CameraInfo.Groups[19].Cameras[count]":" 8",
+
+  "CameraInfo.Groups[19].GroupName":"TV3",
+
+  "CameraInfo.Groups[19].GroupNum":"20",
+
+  "CameraInfo.Groups[2].Cameras":"",
+
+  "CameraInfo.Groups[2].Cameras[0].CameraName":"CamRoll Bar",
+
+  "CameraInfo.Groups[2].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[2].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[2].GroupName":"Roll Bar",
+
+  "CameraInfo.Groups[2].GroupNum":"3",
+
+  "CameraInfo.Groups[3].Cameras":"",
+
+  "CameraInfo.Groups[3].Cameras[0].CameraName":"CamLF Susp",
+
+  "CameraInfo.Groups[3].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[3].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[3].GroupName":"LF Susp",
+
+  "CameraInfo.Groups[3].GroupNum":"4",
+
+  "CameraInfo.Groups[4].Cameras":"",
+
+  "CameraInfo.Groups[4].Cameras[0].CameraName":"CamLR Susp",
+
+  "CameraInfo.Groups[4].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[4].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[4].GroupName":"LR Susp",
+
+  "CameraInfo.Groups[4].GroupNum":"5",
+
+  "CameraInfo.Groups[5].Cameras":"",
+
+  "CameraInfo.Groups[5].Cameras[0].CameraName":"CamGyro",
+
+  "CameraInfo.Groups[5].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[5].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[5].GroupName":"Gyro",
+
+  "CameraInfo.Groups[5].GroupNum":"6",
+
+  "CameraInfo.Groups[6].Cameras":"",
+
+  "CameraInfo.Groups[6].Cameras[0].CameraName":"CamRF Susp",
+
+  "CameraInfo.Groups[6].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[6].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[6].GroupName":"RF Susp",
+
+  "CameraInfo.Groups[6].GroupNum":"7",
+
+  "CameraInfo.Groups[7].Cameras":"",
+
+  "CameraInfo.Groups[7].Cameras[0].CameraName":"CamRR Susp",
+
+  "CameraInfo.Groups[7].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[7].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[7].GroupName":"RR Susp",
+
+  "CameraInfo.Groups[7].GroupNum":"8",
+
+  "CameraInfo.Groups[8].Cameras":"",
+
+  "CameraInfo.Groups[8].Cameras[0].CameraName":"CamCockpit",
+
+  "CameraInfo.Groups[8].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[8].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[8].GroupName":"Cockpit",
+
+  "CameraInfo.Groups[8].GroupNum":"9",
+
+  "CameraInfo.Groups[9].Cameras":"",
+
+  "CameraInfo.Groups[9].Cameras[0].CameraName":"CamBlimp",
+
+  "CameraInfo.Groups[9].Cameras[0].CameraNum":"1",
+
+  "CameraInfo.Groups[9].Cameras[count]":" 1",
+
+  "CameraInfo.Groups[9].GroupName":"Blimp",
+
+  "CameraInfo.Groups[9].GroupNum":"10",
+
+  "CameraInfo.Groups[count]":" 20",
+
+  "CameraInfo":"",
+
+  "DriverInfo.DriverCarFuelKgPerLtr":"0.750",
+
+  "DriverInfo.DriverCarIdx":"0",
+
+  "DriverInfo.DriverCarRedLine":"6500.000",
+
+  "DriverInfo.DriverCarSLBlinkRPM":"6500.000",
+
+  "DriverInfo.DriverCarSLFirstRPM":"5200.000",
+
+  "DriverInfo.DriverCarSLLastRPM":"6100.000",
+
+  "DriverInfo.DriverCarSLShiftRPM":"6100.000",
+
+  "DriverInfo.DriverHeadPosX":"-0.495",
+
+  "DriverInfo.DriverHeadPosY":"-0.010",
+
+  "DriverInfo.DriverHeadPosZ":"0.539",
+
+  "DriverInfo.DriverPitTrkPct":"0.121",
+
+  "DriverInfo.Drivers":"",
+
+  "DriverInfo.Drivers[0].AbbrevName":"",
+
+  "DriverInfo.Drivers[0].CarClassColor":"0xffda59",
+
+  "DriverInfo.Drivers[0].CarClassID":"0",
+
+  "DriverInfo.Drivers[0].CarClassLicenseLevel":"0",
+
+  "DriverInfo.Drivers[0].CarClassMaxFuel":"1.000000 %",
+
+  "DriverInfo.Drivers[0].CarClassRelSpeed":"0",
+
+  "DriverInfo.Drivers[0].CarClassShortName":"",
+
+  "DriverInfo.Drivers[0].CarClassWeightPenalty":"0.000000 kg",
+
+  "DriverInfo.Drivers[0].CarDesignStr":"3,000000,ffffff,6d0003",
+
+  "DriverInfo.Drivers[0].CarID":"23",
+
+  "DriverInfo.Drivers[0].CarIdx":"0",
+
+  "DriverInfo.Drivers[0].CarNumber":""442"",
+
+  "DriverInfo.Drivers[0].CarNumberDesignStr":"40,0,ffcc14,ffcc14,000000",
+
+  "DriverInfo.Drivers[0].CarNumberRaw":"442",
+
+  "DriverInfo.Drivers[0].CarPath":"specracer",
+
+  "DriverInfo.Drivers[0].CarSponsor_1":"1",
+
+  "DriverInfo.Drivers[0].CarSponsor_2":"1",
+
+  "DriverInfo.Drivers[0].HelmetDesignStr":"7,000000,ffcc14,ffcc14",
+
+  "DriverInfo.Drivers[0].Initials":"",
+
+  "DriverInfo.Drivers[0].IRating":"0",
+
+  "DriverInfo.Drivers[0].IsSpectator":"0",
+
+  "DriverInfo.Drivers[0].LicColor":"0x00c702",
+
+  "DriverInfo.Drivers[0].LicLevel":"0",
+
+  "DriverInfo.Drivers[0].LicSubLevel":"0",
+
+  "DriverInfo.Drivers[0].SuitDesignStr":"17,ffffff,000000,6d0003",
+
+  "DriverInfo.Drivers[0].UserID":"140550",
+
+  "DriverInfo.Drivers[0].UserName":"Abhi Beckert",
+
+  "DriverInfo.Drivers[count]":" 1",
+
+  "DriverInfo":"",
+
+  "RadioInfo.Radios":"",
+
+  "RadioInfo.Radios[0].Frequencies":"",
+
+  "RadioInfo.Radios[0].Frequencies[0].CanScan":"1",
+
+  "RadioInfo.Radios[0].Frequencies[0].CanSquawk":"1",
+
+  "RadioInfo.Radios[0].Frequencies[0].CarIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[0].ClubID":"0",
+
+  "RadioInfo.Radios[0].Frequencies[0].EntryIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[0].FrequencyName":""@DRIVERS"",
+
+  "RadioInfo.Radios[0].Frequencies[0].FrequencyNum":"0",
+
+  "RadioInfo.Radios[0].Frequencies[0].IsDeletable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[0].IsMutable":"1",
+
+  "RadioInfo.Radios[0].Frequencies[0].Muted":"0",
+
+  "RadioInfo.Radios[0].Frequencies[0].Priority":"15",
+
+  "RadioInfo.Radios[0].Frequencies[1].CanScan":"1",
+
+  "RadioInfo.Radios[0].Frequencies[1].CanSquawk":"1",
+
+  "RadioInfo.Radios[0].Frequencies[1].CarIdx":"0",
+
+  "RadioInfo.Radios[0].Frequencies[1].ClubID":"0",
+
+  "RadioInfo.Radios[0].Frequencies[1].EntryIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[1].FrequencyName":""@TEAM"",
+
+  "RadioInfo.Radios[0].Frequencies[1].FrequencyNum":"1",
+
+  "RadioInfo.Radios[0].Frequencies[1].IsDeletable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[1].IsMutable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[1].Muted":"0",
+
+  "RadioInfo.Radios[0].Frequencies[1].Priority":"60",
+
+  "RadioInfo.Radios[0].Frequencies[2].CanScan":"1",
+
+  "RadioInfo.Radios[0].Frequencies[2].CanSquawk":"1",
+
+  "RadioInfo.Radios[0].Frequencies[2].CarIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[2].ClubID":"34",
+
+  "RadioInfo.Radios[0].Frequencies[2].EntryIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[2].FrequencyName":""@CLUB"",
+
+  "RadioInfo.Radios[0].Frequencies[2].FrequencyNum":"2",
+
+  "RadioInfo.Radios[0].Frequencies[2].IsDeletable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[2].IsMutable":"1",
+
+  "RadioInfo.Radios[0].Frequencies[2].Muted":"0",
+
+  "RadioInfo.Radios[0].Frequencies[2].Priority":"20",
+
+  "RadioInfo.Radios[0].Frequencies[3].CanScan":"1",
+
+  "RadioInfo.Radios[0].Frequencies[3].CanSquawk":"1",
+
+  "RadioInfo.Radios[0].Frequencies[3].CarIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[3].ClubID":"0",
+
+  "RadioInfo.Radios[0].Frequencies[3].EntryIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[3].FrequencyName":""@ADMIN"",
+
+  "RadioInfo.Radios[0].Frequencies[3].FrequencyNum":"3",
+
+  "RadioInfo.Radios[0].Frequencies[3].IsDeletable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[3].IsMutable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[3].Muted":"0",
+
+  "RadioInfo.Radios[0].Frequencies[3].Priority":"90",
+
+  "RadioInfo.Radios[0].Frequencies[4].CanScan":"1",
+
+  "RadioInfo.Radios[0].Frequencies[4].CanSquawk":"1",
+
+  "RadioInfo.Radios[0].Frequencies[4].CarIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[4].ClubID":"0",
+
+  "RadioInfo.Radios[0].Frequencies[4].EntryIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[4].FrequencyName":""@RACECONTROL"",
+
+  "RadioInfo.Radios[0].Frequencies[4].FrequencyNum":"4",
+
+  "RadioInfo.Radios[0].Frequencies[4].IsDeletable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[4].IsMutable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[4].Muted":"0",
+
+  "RadioInfo.Radios[0].Frequencies[4].Priority":"80",
+
+  "RadioInfo.Radios[0].Frequencies[5].CanScan":"1",
+
+  "RadioInfo.Radios[0].Frequencies[5].CanSquawk":"1",
+
+  "RadioInfo.Radios[0].Frequencies[5].CarIdx":"-1",
+
+  "RadioInfo.Radios[0].Frequencies[5].ClubID":"0",
+
+  "RadioInfo.Radios[0].Frequencies[5].EntryIdx":"0",
+
+  "RadioInfo.Radios[0].Frequencies[5].FrequencyName":""@PRIVATE"",
+
+  "RadioInfo.Radios[0].Frequencies[5].FrequencyNum":"5",
+
+  "RadioInfo.Radios[0].Frequencies[5].IsDeletable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[5].IsMutable":"0",
+
+  "RadioInfo.Radios[0].Frequencies[5].Muted":"0",
+
+  "RadioInfo.Radios[0].Frequencies[5].Priority":"70",
+
+  "RadioInfo.Radios[0].Frequencies[count]":" 6",
+
+  "RadioInfo.Radios[0].HopCount":"1",
+
+  "RadioInfo.Radios[0].NumFrequencies":"6",
+
+  "RadioInfo.Radios[0].RadioNum":"0",
+
+  "RadioInfo.Radios[0].ScanningIsOn":"1",
+
+  "RadioInfo.Radios[0].TunedToFrequencyNum":"0",
+
+  "RadioInfo.Radios[count]":" 1",
+
+  "RadioInfo.SelectedRadioNum":"0",
+
+  "RadioInfo":"",
+
+  "SessionInfo.Sessions":"",
+
+  "SessionInfo.Sessions[0].ResultsFastestLap.ResultsAverageLapTime":"-1.000",
+
+  "SessionInfo.Sessions[0].ResultsFastestLap":"",
+
+  "SessionInfo.Sessions[0].ResultsFastestLap[0].CarIdx":"255",
+
+  "SessionInfo.Sessions[0].ResultsFastestLap[0].FastestLap":"0",
+
+  "SessionInfo.Sessions[0].ResultsFastestLap[0].FastestTime":"0.000",
+
+  "SessionInfo.Sessions[0].ResultsFastestLap[count]":" 1",
+
+  "SessionInfo.Sessions[0].ResultsLapsComplete":"-1",
+
+  "SessionInfo.Sessions[0].ResultsNumCautionFlags":"0",
+
+  "SessionInfo.Sessions[0].ResultsNumCautionLaps":"0",
+
+  "SessionInfo.Sessions[0].ResultsNumLeadChanges":"0",
+
+  "SessionInfo.Sessions[0].ResultsOfficial":"0",
+
+  "SessionInfo.Sessions[0].ResultsPositions":"",
+
+  "SessionInfo.Sessions[0].SessionLaps":"unlimited",
+
+  "SessionInfo.Sessions[0].SessionNum":"0",
+
+  "SessionInfo.Sessions[0].SessionNumLapsToAvg":"0",
+
+  "SessionInfo.Sessions[0].SessionTime":"unlimited",
+
+  "SessionInfo.Sessions[0].SessionType":"Offline Testing",
+
+  "SessionInfo.Sessions[count]":" 1",
+
+  "SessionInfo":"",
+
+  "SplitTimeInfo.Sectors":"",
+
+  "SplitTimeInfo.Sectors[0].SectorNum":"0",
+
+  "SplitTimeInfo.Sectors[0].SectorStartPct":"0.000",
+
+  "SplitTimeInfo.Sectors[1].SectorNum":"1",
+
+  "SplitTimeInfo.Sectors[1].SectorStartPct":"0.303",
+
+  "SplitTimeInfo.Sectors[2].SectorNum":"2",
+
+  "SplitTimeInfo.Sectors[2].SectorStartPct":"0.481",
+
+  "SplitTimeInfo.Sectors[3].SectorNum":"3",
+
+  "SplitTimeInfo.Sectors[3].SectorStartPct":"0.659",
+
+  "SplitTimeInfo.Sectors[4].SectorNum":"4",
+
+  "SplitTimeInfo.Sectors[4].SectorStartPct":"0.840",
+
+  "SplitTimeInfo.Sectors[count]":" 5",
+
+  "SplitTimeInfo":"",
+
+  "WeekendInfo.Category":"Road",
+
+  "WeekendInfo.EventType":"Test",
+
+  "WeekendInfo.LeagueID":"0",
+
+  "WeekendInfo.Official":"0",
+
+  "WeekendInfo.RaceWeek":"0",
+
+  "WeekendInfo.SeasonID":"0",
+
+  "WeekendInfo.SeriesID":"0",
+
+  "WeekendInfo.SessionID":"0",
+
+  "WeekendInfo.SimMode":"full",
+
+  "WeekendInfo.SubSessionID":"0",
+
+  "WeekendInfo.TelemetryOptions":"",
+
+  "WeekendInfo.TrackAirPressure":"29.51 Hg",
+
+  "WeekendInfo.TrackAirTemp":"25.56 C",
+
+  "WeekendInfo.TrackAltitude":"115.55 m",
+
+  "WeekendInfo.TrackCity":"Narellan",
+
+  "WeekendInfo.TrackCountry":"Australia",
+
+  "WeekendInfo.TrackDisplayName":"Oran Park Raceway",
+
+  "WeekendInfo.TrackDisplayShortName":"Oran GP",
+
+  "WeekendInfo.TrackFogLevel":"0 %",
+
+  "WeekendInfo.TrackID":"202",
+
+  "WeekendInfo.TrackLatitude":"-34.007856 m",
+
+  "WeekendInfo.TrackLength":"2.60 km",
+
+  "WeekendInfo.TrackLongitude":"150.733010 m",
+
+  "WeekendInfo.TrackName":"oran gp",
+
+  "WeekendInfo.TrackNumTurns":"12",
+
+  "WeekendInfo.TrackPitSpeedLimit":"50.00 kph",
+
+  "WeekendInfo.TrackRelativeHumidity":"55 %",
+
+  "WeekendInfo.TrackSkies":"Partly Cloudy",
+
+  "WeekendInfo.TrackSurfaceTemp":"39.81 C",
+
+  "WeekendInfo.TrackType":"road course",
+
+  "WeekendInfo.TrackWeatherType":"Constant",
+
+  "WeekendInfo.TrackWindDir":"0.00 rad",
+
+  "WeekendInfo.TrackWindVel":"0.89 m/s",
+
+  "WeekendInfo.WeekendOptions.CommercialMode":"consumer",
+
+  "WeekendInfo.WeekendOptions.CourseCautions":"off",
+
+  "WeekendInfo.WeekendOptions.FogLevel":"0 %",
+
+  "WeekendInfo.WeekendOptions.HardcoreLevel":"1",
+
+  "WeekendInfo.WeekendOptions.HasOpenRegistration":"0",
+
+  "WeekendInfo.WeekendOptions.IsFixedSetup":"0",
+
+  "WeekendInfo.WeekendOptions.NightMode":"0",
+
+  "WeekendInfo.WeekendOptions.NumStarters":"0",
+
+  "WeekendInfo.WeekendOptions.QualifyScoring":"best lap",
+
+  "WeekendInfo.WeekendOptions.RelativeHumidity":"55 %",
+
+  "WeekendInfo.WeekendOptions.Restarts":"single file",
+
+  "WeekendInfo.WeekendOptions.Skies":"Partly Cloudy",
+
+  "WeekendInfo.WeekendOptions.StandingStart":"0",
+
+  "WeekendInfo.WeekendOptions.StartingGrid":"single file",
+
+  "WeekendInfo.WeekendOptions.StrictLapsChecking":"default",
+
+  "WeekendInfo.WeekendOptions.TelemetryDiskFile":"""",
+
+  "WeekendInfo.WeekendOptions.Unofficial":"0",
+
+  "WeekendInfo.WeekendOptions.WeatherTemp":"25.56 C",
+
+  "WeekendInfo.WeekendOptions.WeatherType":"Constant",
+
+  "WeekendInfo.WeekendOptions.WindDirection":"N",
+
+  "WeekendInfo.WeekendOptions.WindSpeed":"3.22 km/h",
+
+  "WeekendInfo.WeekendOptions":"",
+
+  "WeekendInfo":""
+
+}
+

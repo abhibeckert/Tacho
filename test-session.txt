@@ -1,0 +1,169 @@
+{
+
+"rpm": 6284,
+
+"sessiondata": {
+
+"DriverInfo.DriverCarSLShiftRPM": "6100.000",
+
+"DriverInfo.DriverCarSLLastRPM": "6100.000",
+
+"DriverInfo.DriverCarSLFirstRPM": "5200.000",
+
+"DriverInfo.DriverCarSLBlinkRPM": "6500.000",
+
+"DriverInfo.DriverCarRedLine": "6500.000"
+
+},
+
+"laptime": {
+
+"lastlap": -1,
+
+"bestlap": 86.078,
+
+"curdelta": 6.325
+
+},
+
+"sampledata": {
+
+"FuelPress": 3,
+
+"OilPress": 4.14620685577393,
+
+"WaterTemp": 31.9074573516846,
+
+"EngineWarnings": 0,
+
+"OilLevel": 3,
+
+"OilTemp": 31.8667125701904,
+
+"WaterLevel": 4
+
+},
+
+"splits": {
+
+"current": 1,
+
+"displaymode": "vs Optimal",
+
+"split": [
+
+{
+
+"optimal": 23.57,
+
+"id": 1,
+
+"disptime": -99999,
+
+"name": "Split 1",
+
+"last": -99999,
+
+"best": 23.559,
+
+"dispdelta": -99999
+
+},{
+
+"optimal": 19.474,
+
+"id": 2,
+
+"disptime": -99999,
+
+"name": "Split 2",
+
+"last": -99999,
+
+"best": 19.662,
+
+"dispdelta": -99999
+
+},{
+
+"optimal": 14.854,
+
+"id": 3,
+
+"disptime": -99999,
+
+"name": "Split 3",
+
+"last": -99999,
+
+"best": 14.843,
+
+"dispdelta": -99999
+
+},{
+
+"optimal": 14.216,
+
+"id": 4,
+
+"disptime": -99999,
+
+"name": "Split 4",
+
+"last": -99999,
+
+"best": 14.203,
+
+"dispdelta": -99999
+
+},{
+
+"optimal": 13.786,
+
+"id": 5,
+
+"disptime": -99999,
+
+"name": "Split 5",
+
+"last": -99999,
+
+"best": 13.811,
+
+"dispdelta": -99999
+
+}],
+
+"count": 5,
+
+"caption": "vs Optimal"
+
+},
+
+"lapsremaining": 0,
+
+"speed": {
+
+"val": 75,
+
+"delta": -1.9
+
+},
+
+"gear": 3,
+
+"fuel": {
+
+"avgfuelperlap": "0.522 L",
+
+"fuelremaining": "26.42 L",
+
+"lapssincepit": "0.12",
+
+"lapsoffuelremaining": "50.7",
+
+"curfuelperlap": "0.522 L"
+
+}
+
+}
