@@ -15,6 +15,9 @@ import CoreText
 class TachView: UIView
 {
   var currentRPM: CGFloat = 0
+  var stalled: Bool = false
+  var pitSpeedLimiter = false
+  var revLimiter = false
   var recentMaxRPM: CGFloat = 0
   
   let tachMinStrokeStart: CGFloat = 0.52
@@ -24,6 +27,15 @@ class TachView: UIView
   let tachLayer = CAShapeLayer()
   let tachRecentMaxLayer = CAShapeLayer()
   let tachCutoutLayer = CAShapeLayer()
+  
+  let tachBackgroundColor = UIColor(white: 0.2, alpha: 1.0).CGColor
+  let lowRPMColor = UIColor.whiteColor().CGColor
+  let midRPMColor = UIColor.cyanColor().CGColor
+  let highRPMColor = UIColor.yellowColor().CGColor
+  let shiftNowColor = UIColor.greenColor().CGColor
+  let limiterColor = UIColor.redColor().CGColor
+  let limiterAltColor = UIColor.blackColor().CGColor
+  let pitLimiterColor = UIColor.orangeColor().CGColor
   
   override init(frame: CGRect) {
     super.init(frame: frame)
@@ -51,8 +63,7 @@ class TachView: UIView
     
     tachBackgroundLayer.contentsScale = 2.0
     tachBackgroundLayer.path = tachPath.CGPath
-    tachBackgroundLayer.strokeColor = UIColor.whiteColor().CGColor
-    tachBackgroundLayer.opacity = 0.25
+    tachBackgroundLayer.strokeColor = self.tachBackgroundColor
     tachBackgroundLayer.fillColor = UIColor.clearColor().CGColor
     tachBackgroundLayer.lineWidth = 75
     
@@ -64,13 +75,13 @@ class TachView: UIView
     tachLayer.path = tachPath.CGPath
     tachLayer.contentsScale = 2.0
     if (currentRPM < shiftGreenMinRPM) {
-      tachLayer.strokeColor = UIColor.whiteColor().CGColor
+      tachLayer.strokeColor = self.lowRPMColor
     } else if (currentRPM < shiftRedMinRPM) {
-      tachLayer.strokeColor = UIColor.greenColor().CGColor
+      tachLayer.strokeColor = self.midRPMColor
     } else if (currentRPM < shiftBlueMinRPM) {
-      tachLayer.strokeColor = UIColor.redColor().CGColor
+      tachLayer.strokeColor = self.highRPMColor
     } else {
-      tachLayer.strokeColor = UIColor.blueColor().CGColor
+      tachLayer.strokeColor = self.shiftNowColor
     }
     
     tachLayer.fillColor = UIColor.clearColor().CGColor
@@ -86,13 +97,13 @@ class TachView: UIView
     tachRecentMaxLayer.path = tachPath.CGPath
     
     if (recentMaxRPM < shiftGreenMinRPM) {
-      tachRecentMaxLayer.strokeColor = UIColor.whiteColor().CGColor
+      tachRecentMaxLayer.strokeColor = self.lowRPMColor
     } else if (recentMaxRPM < shiftRedMinRPM) {
       tachRecentMaxLayer.strokeColor = UIColor.cyanColor().CGColor
     } else if (recentMaxRPM < shiftBlueMinRPM) {
-      tachRecentMaxLayer.strokeColor = UIColor.redColor().CGColor
+      tachRecentMaxLayer.strokeColor = self.highRPMColor
     } else {
-      tachRecentMaxLayer.strokeColor = UIColor.blueColor().CGColor
+      tachRecentMaxLayer.strokeColor = self.shiftNowColor
     }
     
     
@@ -106,7 +117,6 @@ class TachView: UIView
     
     tachCutoutLayer.contentsScale = 2.0
     tachCutoutLayer.path = tachCutoutPath.CGPath
-    //    tachCutoutLayer.opacity = 0.6
     tachCutoutLayer.fillColor = UIColor.blackColor().CGColor
     
     self.layer.addSublayer(tachCutoutLayer)
@@ -127,25 +137,44 @@ class TachView: UIView
     let tachCutoutPath = UIBezierPath(ovalInRect: CGRect(x: 0 - 80, y: (self.bounds.size.height * 0.2) + 35, width: self.bounds.width * 2.3, height: self.bounds.height * 0.9))
     
     tachBackgroundLayer.path = tachPath.CGPath
-    
     tachLayer.path = tachPath.CGPath
-    if (currentRPM < shiftGreenMinRPM) {
-      tachLayer.strokeColor = UIColor.whiteColor().CGColor
+    
+    tachLayer.strokeEnd = tachMinStrokeStart + ((tachMaxStrokeEnd - tachMinStrokeStart) / (maxRPM / currentRPM))
+    
+    if self.pitSpeedLimiter {
+      if round(NSDate.timeIntervalSinceReferenceDate() * 4) % 2 == 0 {
+        tachBackgroundLayer.strokeColor = self.pitLimiterColor
+      } else {
+        tachBackgroundLayer.strokeColor = self.tachBackgroundColor
+      }
+    } else {
+      tachBackgroundLayer.strokeColor = self.tachBackgroundColor
+    }
+    
+    if (self.stalled) {
+      tachLayer.strokeColor = UIColor.clearColor().CGColor
+    } else if (self.revLimiter && !self.pitSpeedLimiter) {
+      if round(NSDate.timeIntervalSinceReferenceDate() * 12) % 2 == 0 {
+        tachLayer.strokeColor = self.limiterColor
+      } else {
+        tachLayer.strokeColor = self.limiterAltColor
+      }
+    } else if (currentRPM < shiftGreenMinRPM) {
+      tachLayer.strokeColor = self.lowRPMColor
     } else if (currentRPM < shiftRedMinRPM) {
-      tachLayer.strokeColor = UIColor.greenColor().CGColor
+      tachLayer.strokeColor = self.midRPMColor
     } else if (currentRPM < shiftBlueMinRPM) {
-      tachLayer.strokeColor = UIColor.redColor().CGColor
+      tachLayer.strokeColor = self.highRPMColor
     } else if (currentRPM <= maxRPM) {
-      tachLayer.strokeColor = UIColor.blueColor().CGColor
+      tachLayer.strokeColor = self.shiftNowColor
     } else {
       if (round(NSDate.timeIntervalSinceReferenceDate() * 12) % 2 == 0) {
-        tachLayer.strokeColor = UIColor.yellowColor().CGColor
+        tachLayer.strokeColor = self.limiterColor
       } else {
-        tachLayer.strokeColor = UIColor.whiteColor().CGColor
+        tachLayer.strokeColor = self.limiterAltColor
       }
     }
     
-    tachLayer.strokeEnd = tachMinStrokeStart + ((tachMaxStrokeEnd - tachMinStrokeStart) / (maxRPM / currentRPM))
     
     if fabs(recentMaxRPM - currentRPM) < 0.1 {
       tachRecentMaxLayer.opacity = 0
@@ -153,13 +182,13 @@ class TachView: UIView
       tachRecentMaxLayer.opacity = 1
       tachRecentMaxLayer.path = tachPath.CGPath
       if (recentMaxRPM < shiftGreenMinRPM) {
-        tachRecentMaxLayer.strokeColor = UIColor.whiteColor().CGColor
+        tachRecentMaxLayer.strokeColor = self.lowRPMColor
       } else if (recentMaxRPM < shiftRedMinRPM) {
-        tachRecentMaxLayer.strokeColor = UIColor.greenColor().CGColor
+        tachRecentMaxLayer.strokeColor = self.midRPMColor
       } else if (recentMaxRPM < shiftBlueMinRPM) {
-        tachRecentMaxLayer.strokeColor = UIColor.redColor().CGColor
+        tachRecentMaxLayer.strokeColor = self.highRPMColor
       } else {
-        tachRecentMaxLayer.strokeColor = UIColor.blueColor().CGColor
+        tachRecentMaxLayer.strokeColor = self.shiftNowColor
       }
       tachRecentMaxLayer.strokeStart = tachMinStrokeStart + ((tachMaxStrokeEnd - tachMinStrokeStart) / (maxRPM / recentMaxRPM)) - ((tachMaxStrokeEnd - tachMinStrokeStart) * 0.0017)
       tachRecentMaxLayer.strokeEnd = tachMinStrokeStart + ((tachMaxStrokeEnd - tachMinStrokeStart) / (maxRPM / recentMaxRPM)) + ((tachMaxStrokeEnd - tachMinStrokeStart) * 0.0017)

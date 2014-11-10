@@ -11,9 +11,11 @@
 import UIKit
 
 let TachoUpdateVehicleStatusNotificationName = "TachoUpdateVehicleStatusNotificationName"
+let TachoDidFailToFindServerNotificationName = "TachoDidFailToFindServerNotificationName"
 
 //var ISpeedServerIPAddress: String?
-var ISpeedServerIPAddress = "192.168.99.109"
+//var ISpeedServerIPAddress = "192.168.99.109"
+var ISpeedServerIPAddress = "auto"
 var ISpeedServerPort = "3278"
 //var ISpeedServerPort = "80"
 var ISpeedServerUri = "data.json"
@@ -66,7 +68,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NSURLConnectionDataDelega
     let logFile = documentsDir.URLByAppendingPathComponent("log.irlap")
     "".writeToURL(logFile, atomically: true, encoding: NSUTF8StringEncoding, error: nil)
     self.logFileHandle = NSFileHandle(forWritingToURL: logFile, error: nil)
-    let headerData: NSData! = "[Samples]\r\nTime,Speed,Gear,RPM,Raw\r\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
+    let headerData: NSData! = "".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: false)
     self.logFileHandle?.writeData(headerData)
     self.logFileStartDate = NSDate()
     
@@ -106,10 +108,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NSURLConnectionDataDelega
   
   func pollISpeed()
   {
-//    let testData = NSData.dataWithContentsOfURL(NSBundle.mainBundle().URLForResource("test-session", withExtension: "txt")!, options: nil, error: nil)
-//    self.processResponse(nil, data: testData, error: nil)
-//    return
+    // try to guess IP address
+    if ISpeedServerIPAddress == "auto" {
+      
+      self.guessISpeedIP()
+
+      return
+    }
     
+    
+    
+    // poll iSpeed
     let sampleDataStr = "?SendSampleData=EngineWarnings,WaterTemp,WaterLevel,FuelPress,OilTemp,OilPress,OilLevel"
     var splitsFuelStr = "&nosplits&nofuel"
     var sessionDataStr = ""
@@ -168,11 +177,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NSURLConnectionDataDelega
       if let jsonRecord = unsafeDecodedJSon as? NSDictionary {
         if let speedRecord = jsonRecord["speed"] as? NSDictionary {
           if let speed = speedRecord["val"] as? Double {
-            self.speed = Int(speed)
+            self.speed = max(Int(speed), 0)
           }
         }
         if let rpm = jsonRecord["rpm"] as? Int {
-          self.rpm = rpm
+          self.rpm = max(rpm, 0)
         }
         if let gear = jsonRecord["gear"] as? Int {
           self.gear = gear
@@ -261,41 +270,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NSURLConnectionDataDelega
     NSNotificationCenter.defaultCenter().postNotificationName(TachoUpdateVehicleStatusNotificationName, object: self, userInfo: userInfo)
   }
   
-  func logAllData()
-  {
-    // sample data (RPM, speed, gear, fuel, etc)
-    let sampleDataRequestUrl = NSURL(string: "http://\(ISpeedServerIPAddress):\(ISpeedServerPort)/\(ISpeedServerUri)?SendSampleData=*")
-    let sampleDataRequest = NSURLRequest(URL: sampleDataRequestUrl!, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 0.5)
-    NSURLConnection.sendAsynchronousRequest(sampleDataRequest, queue: NSOperationQueue.mainQueue()) {[unowned self] (response, data, error) -> Void in
-      if data == nil {
-        return
-      }
-      
-      let seconds = fabs(self.logFileStartDate.timeIntervalSinceNow)
-      self.sampleDataLogFile.writeData("\n\n\(seconds)\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
-      
-      self.sampleDataLogFile.writeData(data)
-    }
-    
-    // session data (track, car, etc)
-    if self.lastCheckForSessionData.timeIntervalSinceNow < (self.gear == 0 ? -0.5 : -10.0) {
-      let sessionDataRequestUrl = NSURL(string: "http://\(ISpeedServerIPAddress):\(ISpeedServerPort)/\(ISpeedServerUri)?SendSessionData=*")
-      let sampleDataRequest = NSURLRequest(URL: sessionDataRequestUrl!, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 0.5)
-      NSURLConnection.sendAsynchronousRequest(sampleDataRequest, queue: NSOperationQueue.mainQueue()) {[unowned self] (response, data, error) -> Void in
-        if data == nil {
-          return
-        }
-        
-        let seconds = fabs(self.logFileStartDate.timeIntervalSinceNow)
-        self.sampleDataLogFile.writeData("\n\n\(seconds)\n".dataUsingEncoding(NSUTF8StringEncoding, allowLossyConversion: true)!)
-        
-        self.sampleDataLogFile.writeData(data)
-      }
-      
-      self.lastCheckForSessionData = NSDate()
-    }
-  }
-  
   func connection(connection: NSURLConnection, willCacheResponse cachedResponse: NSCachedURLResponse) -> NSCachedURLResponse?
   {
     return nil // never cache anything. ever.
@@ -334,6 +308,110 @@ class AppDelegate: UIResponder, UIApplicationDelegate, NSURLConnectionDataDelega
   func prefersStatusBarHidden() -> Bool
   {
     return false
+  }
+  
+  func getDeviceLANIPAddress() -> String?
+  {
+    let ifAddresses = self.getIFAddresses()
+    
+    for ifAddress in ifAddresses {
+      if ifAddress.rangeOfString("192.168.", options: .AnchoredSearch) == nil {
+        continue
+      }
+      
+      return ifAddress
+    }
+    
+    // try to find a 10. address
+    for ifAddress in ifAddresses {
+      if ifAddress.rangeOfString("10.", options: .AnchoredSearch) == nil {
+        continue
+      }
+      
+      return ifAddress
+    }
+    
+    return nil
+  }
+  
+  func getIFAddresses() -> [String] {
+    var addresses = [String]()
+    
+    // Get list of all interfaces on the local machine:
+    var ifaddr : UnsafeMutablePointer<ifaddrs> = nil
+    if getifaddrs(&ifaddr) == 0 {
+      
+      // For each interface ...
+      for (var ptr = ifaddr; ptr != nil; ptr = ptr.memory.ifa_next) {
+        let flags = Int32(ptr.memory.ifa_flags)
+        var addr = ptr.memory.ifa_addr.memory
+        
+        // Check for running IPv4, IPv6 interfaces. Skip the loopback interface.
+        if (flags & (IFF_UP|IFF_RUNNING|IFF_LOOPBACK)) == (IFF_UP|IFF_RUNNING) {
+          if addr.sa_family == UInt8(AF_INET) || addr.sa_family == UInt8(AF_INET6) {
+            
+            // Convert interface address to a human readable string:
+            var hostname = [CChar](count: Int(NI_MAXHOST), repeatedValue: 0)
+            if (getnameinfo(&addr, socklen_t(addr.sa_len), &hostname, socklen_t(hostname.count),
+              nil, socklen_t(0), NI_NUMERICHOST) == 0) {
+                if let address = String.fromCString(hostname) {
+                  addresses.append(address)
+                }
+            }
+          }
+        }
+      }
+      freeifaddrs(ifaddr)
+    }
+    
+    return addresses
+  }
+  
+  func guessISpeedIP()
+  {
+    // find our LAN IP
+    let deviceIP = self.getDeviceLANIPAddress() as String!
+    if deviceIP == nil {
+      dispatch_after(NSEC_PER_SEC / (ISpeedPollHertz / 10), dispatch_get_main_queue(), { () -> Void in
+        self.pollISpeed()
+      })
+      NSNotificationCenter.defaultCenter().postNotificationName(TachoDidFailToFindServerNotificationName, object: self, userInfo: ["message": "No LAN IP"])
+      return
+    }
+    
+    // find our subnet
+    let subnet = deviceIP.stringByReplacingOccurrencesOfString("\\.[0-9]+$", withString: "", options: .RegularExpressionSearch, range: nil)
+    
+    // sequentially pick a host number
+    struct Holder {
+      static var lastHostNumber = -1
+    }
+    if (Holder.lastHostNumber == -1) {
+      Holder.lastHostNumber = NSUserDefaults().integerForKey("LastHostNumber");
+    } else {
+      Holder.lastHostNumber++
+    }
+    if Holder.lastHostNumber < 0 || Holder.lastHostNumber > 255 {
+      Holder.lastHostNumber = 0
+    }
+    
+    // try this IP address
+    let possibleISpeedIP = "\(subnet).\(Holder.lastHostNumber)"
+    let url = NSURL(string: "http://\(possibleISpeedIP):\(ISpeedServerPort)/\(ISpeedServerUri)")
+    let request = NSURLRequest(URL: url!, cachePolicy: .ReloadIgnoringLocalCacheData, timeoutInterval: 0.1)
+    NSURLConnection.sendAsynchronousRequest(request, queue: NSOperationQueue.mainQueue()) {[unowned self] (response, data, error) -> Void in
+      if error != nil {
+        dispatch_after(NSEC_PER_SEC / ISpeedPollHertz, dispatch_get_main_queue(), { () -> Void in
+          self.pollISpeed()
+        })
+        NSNotificationCenter.defaultCenter().postNotificationName(TachoDidFailToFindServerNotificationName, object: self, userInfo: ["message": possibleISpeedIP])
+        return
+      }
+      
+      ISpeedServerIPAddress = "\(possibleISpeedIP)"
+      NSUserDefaults().setInteger(Holder.lastHostNumber, forKey: "LastHostNumber")
+      self.pollISpeed()
+    }
   }
 }
 

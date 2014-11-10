@@ -10,6 +10,25 @@
 
 import UIKit
 
+struct ISpeedEngineWarnings : RawOptionSetType {
+  typealias RawValue = UInt
+  private var value: UInt = 0
+  init(_ value: UInt) { self.value = value }
+  init(rawValue value: UInt) { self.value = value }
+  init(nilLiteral: ()) { self.value = 0 }
+  static var allZeros: ISpeedEngineWarnings { return self(0) }
+  static func fromMask(raw:UInt) -> ISpeedEngineWarnings { return self(raw) }
+  var rawValue: UInt { return self.value }
+  
+  static var None:              ISpeedEngineWarnings { return self(0) }
+  static var WaterTemp:         ISpeedEngineWarnings { return self(0x01) }
+  static var FuelPressure:      ISpeedEngineWarnings { return self(0x02) }
+  static var OilPressure:       ISpeedEngineWarnings { return self(0x04) }
+  static var EngineStalled:     ISpeedEngineWarnings { return self(0x08) }
+  static var PitSpeedLimiter:   ISpeedEngineWarnings { return self(0x10) }
+  static var RevLimiter:        ISpeedEngineWarnings { return self(0x20) }
+}
+
 class ViewController: UIViewController {
                             
   var speedLabel: UILabel!
@@ -21,9 +40,11 @@ class ViewController: UIViewController {
   var lapsRemainingLabel: UILabel!
   var fuelPressureLabel: UILabel!
   var oilPressureLabel: UILabel!
-  var waterLevelLabel: UILabel!
+  var waterTempLabel: UILabel!
   var settingsButton: UIButton!
   var settingsViewController: SettingsViewController?
+  
+  var searchingForServerLabel: UILabel!
   
   override func loadView() {
     super.loadView()
@@ -33,6 +54,14 @@ class ViewController: UIViewController {
     
     self.tachView = TachView(frame: CGRect(x: 0, y: 0, width: viewSize.width, height: viewSize.height))
     self.view.addSubview(self.tachView)
+    
+    self.searchingForServerLabel = UILabel(frame: CGRect(x: 20, y: viewSize.height - 197, width: viewSize.width - 40, height: 220))
+    self.searchingForServerLabel.font = UIFont(name: "Avenir", size: 22)
+    self.searchingForServerLabel.textColor = UIColor.whiteColor()
+    self.searchingForServerLabel.textAlignment = .Center
+    self.searchingForServerLabel.text = "Searching for iSpeed...\n "
+    self.searchingForServerLabel.numberOfLines = 2
+    self.view.addSubview(self.searchingForServerLabel)
     
     self.gearLabel = UILabel(frame: CGRect(x: (viewSize.width - 180) / 2, y: viewSize.height - 197, width: 180, height: 220))
     self.gearLabel.font = UIFont(name: "Avenir-Heavy", size: 180)
@@ -55,41 +84,41 @@ class ViewController: UIViewController {
     let labelHeight = 22.0
     
     
-    self.lapsRemainingLabel = UILabel(frame: CGRect(x: viewSize.width - 200, y: viewSize.height - (190 - (25 * 1)), width: 180, height: 20))
+    self.lapsRemainingLabel = UILabel(frame: CGRect(x: viewSize.width - 180, y: viewSize.height - (190 - (25 * 1)), width: 170, height: 20))
     self.lapsRemainingLabel.font = labelFont
     self.lapsRemainingLabel.textColor = UIColor.whiteColor()
     self.lapsRemainingLabel.textAlignment = .Right
     self.view.addSubview(self.lapsRemainingLabel)
     
-    self.fuelRemainingLabel = UILabel(frame: CGRect(x: viewSize.width - 200, y: viewSize.height - (190 - (25 * 2)), width: 180, height: 20))
+    self.fuelRemainingLabel = UILabel(frame: CGRect(x: viewSize.width - 180, y: viewSize.height - (190 - (25 * 2)), width: 170, height: 20))
     self.fuelRemainingLabel.font = labelFont
     self.fuelRemainingLabel.textColor = UIColor.whiteColor()
     self.fuelRemainingLabel.textAlignment = .Right
     self.view.addSubview(self.fuelRemainingLabel)
     
-    self.fuelPerLapLabel = UILabel(frame: CGRect(x: viewSize.width - 200, y: viewSize.height - (190 - (25 * 3)), width: 180, height: 20))
+    self.fuelPerLapLabel = UILabel(frame: CGRect(x: viewSize.width - 180, y: viewSize.height - (190 - (25 * 3)), width: 170, height: 20))
     self.fuelPerLapLabel.font = labelFont
     self.fuelPerLapLabel.textColor = UIColor.whiteColor()
     self.fuelPerLapLabel.textAlignment = .Right
     self.view.addSubview(self.fuelPerLapLabel)
     
-    self.fuelPressureLabel = UILabel(frame: CGRect(x: viewSize.width - 200, y: viewSize.height - (190 - (25 * 4)), width: 180, height: 20))
+    self.fuelPressureLabel = UILabel(frame: CGRect(x: viewSize.width - 180, y: viewSize.height - (190 - (25 * 4)), width: 170, height: 20))
     self.fuelPressureLabel.font = labelFont
     self.fuelPressureLabel.textColor = UIColor.whiteColor()
     self.fuelPressureLabel.textAlignment = .Right
     self.view.addSubview(self.fuelPressureLabel)
     
-    self.oilPressureLabel = UILabel(frame: CGRect(x: viewSize.width - 200, y: viewSize.height - (190 - (25 * 5)), width: 180, height: 20))
+    self.oilPressureLabel = UILabel(frame: CGRect(x: viewSize.width - 180, y: viewSize.height - (190 - (25 * 5)), width: 170, height: 20))
     self.oilPressureLabel.font = labelFont
     self.oilPressureLabel.textColor = UIColor.whiteColor()
     self.oilPressureLabel.textAlignment = .Right
     self.view.addSubview(self.oilPressureLabel)
     
-    self.waterLevelLabel = UILabel(frame: CGRect(x: viewSize.width - 200, y: viewSize.height - (190 - (25 * 6)), width: 180, height: 20))
-    self.waterLevelLabel.font = labelFont
-    self.waterLevelLabel.textColor = UIColor.whiteColor()
-    self.waterLevelLabel.textAlignment = .Right
-    self.view.addSubview(self.waterLevelLabel)
+    self.waterTempLabel = UILabel(frame: CGRect(x: viewSize.width - 180, y: viewSize.height - (190 - (25 * 6)), width: 170, height: 20))
+    self.waterTempLabel.font = labelFont
+    self.waterTempLabel.textColor = UIColor.whiteColor()
+    self.waterTempLabel.textAlignment = .Right
+    self.view.addSubview(self.waterTempLabel)
     
     self.settingsButton = UIButton(frame: CGRect(x: 15, y: 25, width: 150, height: 50))
     self.settingsButton.setTitle("Settings", forState: .Normal)
@@ -102,6 +131,7 @@ class ViewController: UIViewController {
     super.viewDidLoad()
     
     NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("vehicleStatusChanged:"), name: TachoUpdateVehicleStatusNotificationName, object: nil)
+    NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("failedToFindServer:"), name: TachoDidFailToFindServerNotificationName, object: nil)
     
     dispatch_after(1 * NSEC_PER_SEC, dispatch_get_main_queue(), {
       self.tachView.createLayers()
@@ -118,10 +148,25 @@ class ViewController: UIViewController {
   override func preferredStatusBarStyle() -> UIStatusBarStyle {
     return .LightContent
   }
+  
+  func failedToFindServer(notification: NSNotification)
+  {
+    let userInfo = notification.userInfo as NSDictionary!
+    let message = userInfo["message"] as String!
+    
+    self.searchingForServerLabel.text = "Searching for iSpeed...\n\(message)"
+    
+    if self.searchingForServerLabel.hidden {
+      self.searchingForServerLabel.hidden = false
+    }
+  }
 
   func vehicleStatusChanged(notification: NSNotification)
   {
     let details = notification.userInfo as NSDictionary!
+    if !self.searchingForServerLabel.hidden {
+      self.searchingForServerLabel.hidden = true
+    }
     
     if let speed = details["speed"] as? Int {
       self.speedLabel.text = "\(speed)"
@@ -172,21 +217,41 @@ class ViewController: UIViewController {
     
     if let sampleData = details["sampledata"] as? NSDictionary {
       if let fuelPressure = sampleData["FuelPress"] as? Double {
-        fuelPressureLabel.text = String(format: "Fuel Pressure: %0.3f", fuelPressure)
+        fuelPressureLabel.text = String(format: "Fuel Pressure: %0.2f", fuelPressure)
       }
       if let oilPressure = sampleData["OilPress"] as? Double {
-        oilPressureLabel.text = String(format: "Oil Pressure: %0.3f", oilPressure)
+        oilPressureLabel.text = String(format: "Oil Pressure: %0.2f", oilPressure)
       }
-      if let waterLevel = sampleData["WaterLevel"] as? Int {
-        waterLevelLabel.text = String(format: "Water Level: \(waterLevel)")
+      if let waterTemp = sampleData["WaterTemp"] as? Double {
+        waterTempLabel.text = String(format: "Water Temp: %0.0f", waterTemp)
       }
-      if let warnings = sampleData["EngineWarnings"] as? Int {
-        let color = warnings == 0 ? UIColor.blackColor() : UIColor.redColor()
+      
+      if let warningsInt = sampleData["EngineWarnings"] as? UInt {
+        let warnings = ISpeedEngineWarnings.fromMask(warningsInt)
         
+        var color = (warnings & .WaterTemp != nil) ? UIColor.redColor() : UIColor.blackColor()
+        if (waterTempLabel.backgroundColor != color) {
+          waterTempLabel.backgroundColor = color
+        }
+        color = (warnings & .FuelPressure != nil) ? UIColor.redColor() : UIColor.blackColor()
         if (fuelPressureLabel.backgroundColor != color) {
           fuelPressureLabel.backgroundColor = color
+        }
+        color = (warnings & .OilPressure != nil) ? UIColor.redColor() : UIColor.blackColor()
+        if (oilPressureLabel.backgroundColor != color) {
           oilPressureLabel.backgroundColor = color
-          waterLevelLabel.backgroundColor = color
+        }
+        var bool = warnings & .EngineStalled != nil
+        if (self.tachView.stalled != bool) {
+          self.tachView.stalled = bool
+        }
+        bool = warnings & .PitSpeedLimiter != nil
+        if (self.tachView.pitSpeedLimiter != bool) {
+          self.tachView.pitSpeedLimiter = bool
+        }
+        bool = warnings & .RevLimiter != nil
+        if (self.tachView.revLimiter != bool) {
+          self.tachView.revLimiter = bool
         }
       }
     }

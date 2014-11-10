@@ -19,6 +19,7 @@
 
 /* Begin PBXFileReference section */
 		383BE9E019E2585A005DB19E /* 1363907.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = 1363907.jpeg; sourceTree = SOURCE_ROOT; };
+		386C993E1A09FFFD00281B72 /* Tacho-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Tacho-Bridging-Header.h"; sourceTree = "<group>"; };
 		387AFD9F19A49C4200AA4658 /* SettingsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SettingsViewController.swift; sourceTree = "<group>"; };
 		3891E213199DE58E004E2063 /* TachView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TachView.swift; sourceTree = "<group>"; };
 		3891E215199DE6B0004E2063 /* SmallView.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = SmallView.playground; sourceTree = "<group>"; };
@@ -70,6 +71,7 @@
 				38DD1EC319A4637F00ECAD8C /* Main.storyboard */,
 				38CFC647199C9477000B2C58 /* Images.xcassets */,
 				38CFC63E199C9477000B2C58 /* Supporting Files */,
+				386C993E1A09FFFD00281B72 /* Tacho-Bridging-Header.h */,
 			);
 			path = Tacho;
 			sourceTree = "<group>";
@@ -264,6 +266,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Tacho/Info.plist;
@@ -271,6 +274,9 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tacho/Tacho-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -279,6 +285,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Tacho/Info.plist;
@@ -286,6 +293,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				PROVISIONING_PROFILE = "";
+				SWIFT_OBJC_BRIDGING_HEADER = "Tacho/Tacho-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};
